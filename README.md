@@ -3,6 +3,7 @@ Testbed project exploring the performance of Unity's Job System / Burst compiler
 
 _Tested on Unity 2018.3.9._
 
+## Modes
 Currently 2 modes are explored:
 * **Particle Swarm**
 <br/>_524.288 Particles_
@@ -11,5 +12,14 @@ Currently 2 modes are explored:
 <br/>_262.144 Vectors_
 ![262.144 Vectors](Recordings/gif_animation_010.gif?raw=true "262.144 Vectors")
 
-### Performance:
-Swarm: **524.288 Particles** particles at 60-70 fps (CPU: Intel i7 5930k, GPU: Nvidia GTX 970)
+## Performance:
+#### CPU: Intel i7 5930k, GPU: Nvidia GTX 970
+Swarm: 
+**524.288 Particles** particles at 60-70 fps <br/>
+**1.048.576 Particles** particles at 30 fps
+
+
+## To Do
+* [Particle Swarm] Implement spatial binning using the Concurrent NativeMultiHashMap collection.
+* [Particle Swarm] Implement flocking / Boid behaviour.
+* [Particle Swarm] Implement Unity's ECS (Entity Component System)
