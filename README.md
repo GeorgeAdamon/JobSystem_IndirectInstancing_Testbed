@@ -23,6 +23,12 @@ Currently 2 modes are explored:
 **524.288 Particles** particles at 60-70 fps <br/>
 **1.048.576 Particles** particles at 30 fps
 
+## Packages Used
+* [Unity.Jobs](https://docs.unity3d.com/Packages/com.unity.jobs@0.0/manual/index.html)
+* [Unity.Collections](https://docs.unity3d.com/Packages/com.unity.collections@0.0/api/Unity.Collections.html)
+* [Unity.Mathematics](https://docs.unity3d.com/Packages/com.unity.mathematics@1.0/manual/index.html)
+* [Unity.Burst](https://docs.unity3d.com/Packages/com.unity.burst@1.0/manual/index.html)
+
 
 ## To Do
 * [Particle Swarm] Implement spatial binning using the Concurrent NativeMultiHashMap collection.
