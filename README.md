@@ -3,6 +3,7 @@ Testbed project exploring the performance of Unity's Job System/Burst compiler c
 
 Currently 2 modes are explored:
 * Particle Swarm
+![512.000 Particles](relative/path/to/img.jpg?raw=true "Title")
 * Animated Vector Field
 
 ### Performance:
