@@ -306,10 +306,10 @@ MonoBehaviour:
   ZCount: 64
   CellSize: 10
   voxelCount: 0
-  NoiseScaleX: 0.01
-  NoiseScaleY: 0.01
-  NoiseScaleZ: 0.01
-  NoiseSpeedX: 0.088
+  NoiseScaleX: 0.00309
+  NoiseScaleY: 0.00309
+  NoiseScaleZ: 0.00309
+  NoiseSpeedX: 0.555
   NoiseSpeedY: 0.01
   NoiseSpeedZ: 0.01
 --- !u!4 &688779366
