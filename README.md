@@ -3,6 +3,11 @@ Testbed project exploring the performance of Unity's Job System / Burst compiler
 
 _Tested on Unity 2018.3.9._
 
+## Index
+* [Jobified Scripts](https://github.com/GeorgeAdamon/InstancedIndirect_And_JobSystem/tree/master/Assets/Scripts/Jobified)
+* [Instanced Indirect Renderers](https://github.com/GeorgeAdamon/InstancedIndirect_And_JobSystem/tree/master/Assets/Scripts/Jobified)
+* [Shaders](https://github.com/GeorgeAdamon/InstancedIndirect_And_JobSystem/tree/master/Assets/Scripts/Jobified)
+
 ## Modes
 Currently 2 modes are explored:
 * **Particle Swarm**
