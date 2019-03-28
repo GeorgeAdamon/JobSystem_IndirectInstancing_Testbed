@@ -28,7 +28,7 @@ Currently 2 modes are explored:
 * [Unity.Collections](https://docs.unity3d.com/Packages/com.unity.collections@0.0/api/Unity.Collections.html)
 * [Unity.Mathematics](https://docs.unity3d.com/Packages/com.unity.mathematics@1.0/manual/index.html)
 * [Unity.Burst](https://docs.unity3d.com/Packages/com.unity.burst@1.0/manual/index.html)
-
+* [Unity.PostProcessing](https://docs.unity3d.com/Packages/com.unity.postprocessing@2.1/manual/index.html)
 
 ## To Do
 * [Particle Swarm] Implement spatial binning using the Concurrent NativeMultiHashMap collection.
