@@ -1,5 +1,5 @@
 # Unity Job System & Indirect Instancing Testbed
-Testbed project exploring the performance of Unity's Job System/Burst compiler combined with GPU mesh instancing.
+Testbed project exploring the performance of Unity's Job System / Burst compiler combined with GPU mesh instancing (using the DrawMeshInstancedIndirect function, and passing Job System's NativeArrays directly to the shaders as ComputeBuffers).
 
 Currently 2 modes are explored:
 * **Particle Swarm**
