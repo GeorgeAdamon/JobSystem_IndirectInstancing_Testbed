@@ -14,7 +14,7 @@ Currently 2 modes are explored:
 
 ## Performance:
 #### CPU: Intel i7 5930k, GPU: Nvidia GTX 970
-Swarm: 
+#### Swarm:<br/>
 **524.288 Particles** particles at 60-70 fps <br/>
 **1.048.576 Particles** particles at 30 fps
 
