@@ -12,7 +12,7 @@ _Tested on Unity 2018.3.9._
 Currently 2 modes are explored:
 * **Particle Swarm**
 <br/>_524.288 Particles_
-[See it in action](https://vimeo.com/327553555)
+<br/>[**See it in action**](https://vimeo.com/327553555)
 ![524.288 Particles](Recordings/gif_animation_007.gif?raw=true "524.288 Particles")
 * **Animated Vector Field**
 <br/>_262.144 Vectors_
