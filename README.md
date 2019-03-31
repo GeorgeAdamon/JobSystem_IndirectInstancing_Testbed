@@ -13,7 +13,7 @@ Currently 2 modes are explored:
 * **Particle Swarm**
 <br/>_524.288 Particles_
 <br/>[**See it in action**](https://vimeo.com/327553555)
-![524.288 Particles](Recordings/gif_animation_007.gif?raw=true "524.288 Particles")
+![524.288 Particles](Recordings/Particles.gif?raw=true "524.288 Particles")
 * **Animated Vector Field**
 <br/>_262.144 Vectors_
 ![262.144 Vectors](Recordings/gif_animation_010.gif?raw=true "262.144 Vectors")
