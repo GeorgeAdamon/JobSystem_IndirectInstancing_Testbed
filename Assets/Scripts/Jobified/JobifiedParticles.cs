@@ -22,8 +22,7 @@ public class JobifiedParticles: MonoBehaviour
 
     [Tooltip("Overall directional pull")]
     public Vector3 m_Acceleration = new Vector3(0.0002f, 0.0001f, 0.0002f);
-
-    private float3[] Positions;
+    
 
     //========== JOB SYSTEM RELATED VARIABLES ( NativeArrays & JobHandles) ============//
 
@@ -45,7 +44,7 @@ public class JobifiedParticles: MonoBehaviour
     void Start()
     {
         _objectCount = (int)Mathf.Pow(2, PowerOfTwo);
-        UpdateArrays();
+        Allocate();
     }
 
     void Update()
@@ -54,8 +53,9 @@ public class JobifiedParticles: MonoBehaviour
 
         if (cachedObjectCount != _objectCount)
         {
-            UpdateArrays();
+            Allocate();
         }
+        
         // Prepare jobs with data
         m_AccelJob = new AccelerationJob()
         {
@@ -76,18 +76,17 @@ public class JobifiedParticles: MonoBehaviour
 
         //Schedule the first job
         m_AccelJobHandle = m_AccelJob.Schedule(_objectCount, 64);
+        
         //Schedule the second job, chained to the first
         m_PositionJobHandle = m_Job.Schedule(_objectCount, 64, m_AccelJobHandle);
+        
     }
 
     void LateUpdate()
     {
         // Finalize the jobs
         m_PositionJobHandle.Complete();
-
-        //Copy the data to the arrays
-        _Positions.CopyTo(Positions);
-
+        
     }
 
     void OnDestroy()
@@ -99,16 +98,8 @@ public class JobifiedParticles: MonoBehaviour
     }
 
     //============ CUSTOM PRIVATE METHODS ==========//
-    private void UpdateArrays()
-    {     
-        Positions = new float3[_objectCount];
-
-        // Generate points at random locations
-        for (int i = 0; i < _objectCount; i++)
-        {
-            Positions[i] = new Vector3(UnityEngine.Random.Range(-50, 50), UnityEngine.Random.Range(-10, 10), UnityEngine.Random.Range(-50, 50));
-        }
-
+    private void Allocate()
+    {
         // Manually release the memory allocated by the NativeArrays
         if (_Velocities.IsCreated)
         {
@@ -127,8 +118,14 @@ public class JobifiedParticles: MonoBehaviour
 
         // Reallocate memory for the arrays.
         _Velocities = new NativeArray<float3>(_objectCount, Allocator.Persistent);
-        _Positions = new NativeArray<float3>(Positions, Allocator.Persistent);
-        _Colors = new NativeArray<float4>(_objectCount, Allocator.Persistent);
+        _Positions  = new NativeArray<float3>(_objectCount, Allocator.Persistent);
+        _Colors     = new NativeArray<float4>(_objectCount, Allocator.Persistent);
+
+        // Generate points at random locations
+        new RandomPositionsJob()
+        {
+            positions =  _Positions
+        }.Schedule(_objectCount,128).Complete();
 
         cachedObjectCount = _objectCount;
     }
@@ -174,15 +171,14 @@ public class JobifiedParticles: MonoBehaviour
 
         public void Execute(int i)
         {
+      
             // Calculate the VERTICAL angle at which to move for the next step, using a perlin noise function
             //float theta = noise.snoise(positions[i]*0.01f - Time*0.1f) * -2 + 1;  // Noise moves while particles move through it
             float theta = noise.snoise(positions[i] * 0.01f) * -2 + 1;          // Noise doesn't move. Particles move through a constant noise field.
-
-
+            
             // Calculate the HORIZONTAL angle at which to move for the next step, using a perlin noise function
             //float phi = noise.snoise(positions[i] * 0.01f - Time * 0.5f) * TWOPI; // Noise moves while particles move through it
            float phi = noise.snoise(positions[i] * 0.01f) * VectorFieldUtils.TWOPI; // Noise doesn't move. Particles move through a constant noise field.
-
 
             // Using the angle, find the direction, using simple trigonometry
             float x = math.cos(phi) * 4;
@@ -198,5 +194,20 @@ public class JobifiedParticles: MonoBehaviour
         }
     }
 
+    [BurstCompile]
+    struct RandomPositionsJob : IJobParallelFor
+    {
+        public NativeArray<float3> positions;
+        
+        public void Execute(int index)
+        {
+            var rnd = Unity.Mathematics.Random.CreateFromIndex((uint)index);
+            var x   = rnd.NextFloat(-50, 50);
+            var y   = rnd.NextFloat(-10, 10);
+            var z   = rnd.NextFloat(-50, 50);
+
+            positions[index] = new float3(x, y, z);
+        }
+    }
 
 }

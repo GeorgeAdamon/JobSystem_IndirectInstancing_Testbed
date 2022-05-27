@@ -32,12 +32,7 @@ public class JobifiedVectorField : MonoBehaviour
     [Range(0.01f, 2)] public float NoiseSpeedX;
     [Range(0.01f, 2)] public float NoiseSpeedY;
     [Range(0.01f, 2)] public float NoiseSpeedZ;
-
-    //============ PUBLIC ARRAYS FOR INTEROPERABILITY WITH OTHER SCRIPTS ==========//
-    //Note: These Arrays are now redundant, since ComputeBuffers can accept NativeArrays in 2018.3 
-    //[HideInInspector] public float3[] Positions;
-    //[HideInInspector] public float3[] Directions;
-
+    
     //========== JOB SYSTEM RELATED VARIABLES ( NativeArrays & JobHandles) ============//
     NativeArray<Voxel> Voxels;
     public NativeArray<float3> _positions;
@@ -50,11 +45,7 @@ public class JobifiedVectorField : MonoBehaviour
     {
         voxelCount = XCount * YCount * ZCount;
         cachedVoxelCount = voxelCount;
-
-        // These Arrays are now redundant, since ComputeBuffers can accept NativeArrays. 
-        // Performance gains by removing the unnecessaary CopyFrom() at the end of each job
-        //Positions = new float3[voxelCount];
-        //Directions = new float3[voxelCount];
+        
         Voxels = new NativeArray<Voxel>(voxelCount, Allocator.Persistent);
         _positions = new NativeArray<float3>(voxelCount, Allocator.Persistent);
         _directions = new NativeArray<float3>(voxelCount, Allocator.Persistent);
@@ -98,9 +89,6 @@ public class JobifiedVectorField : MonoBehaviour
         // Complete the job at the very end of each frame
         updateVoxelsJobHandle.Complete();
 
-        // These Arrays are now redundant, since ComputeBuffers can accept NativeArrays. 
-        // Performance gains by removing the unnecessary CopyTo
-        //  _directions.CopyTo(Directions);
     }
  
     void OnDestroy()
@@ -136,10 +124,7 @@ public class JobifiedVectorField : MonoBehaviour
 
         createVoxelsJobHandle.Complete();
 
-        // These Arrays are now redundant, since ComputeBuffers can accept NativeArrays. 
-        // Performance gains by removing the unnecessary CopyTo
-        // _positions.CopyTo(Positions);
-        // _directions.CopyTo(Directions);
+
     }
 
     //============ JOB DEFINITIONS ==========//
