@@ -1,6 +1,9 @@
 # Unity Job System & Indirect Instancing Testbed
 Testbed project exploring the performance of Unity's Job System / Burst compiler combined with GPU mesh instancing (using the [DrawMeshInstancedIndirect](https://docs.unity3d.com/ScriptReference/Graphics.DrawMeshInstancedIndirect.html) function, and passing Job System's NativeArrays directly to the shaders as ComputeBuffers).
 
+The functionality provided by this project is slowly becoming obsolete, as the Visual Effect Graph can handle **at least** an order of magnitude more particles at comparable frame rates.  
+It's still a good example for basic DOTS data generation & useful for situations where the use of GPU / VFX Graph is not preferred.  
+
 _Tested on Unity 2022.1.2f1_
 
 ## Index
@@ -32,6 +35,7 @@ Currently 2 modes are explored:
 * [Unity.PostProcessing](https://docs.unity3d.com/Packages/com.unity.postprocessing@2.1/manual/index.html)
 
 ## To Do
+* Add support for HDRP and URP
 * [Particle Swarm] Implement spatial binning using the Concurrent NativeMultiHashMap collection.
 * [Particle Swarm] Implement flocking / Boid behaviour.
 * [Particle Swarm] Implement Unity's ECS (Entity Component System)
