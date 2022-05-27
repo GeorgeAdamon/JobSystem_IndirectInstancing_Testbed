@@ -1,7 +1,7 @@
 # Unity Job System & Indirect Instancing Testbed
 Testbed project exploring the performance of Unity's Job System / Burst compiler combined with GPU mesh instancing (using the [DrawMeshInstancedIndirect](https://docs.unity3d.com/ScriptReference/Graphics.DrawMeshInstancedIndirect.html) function, and passing Job System's NativeArrays directly to the shaders as ComputeBuffers).
 
-_Tested on Unity 2018.3.9._
+_Tested on Unity 2022.1.2f1_
 
 ## Index
 * [Jobified Scripts](https://github.com/GeorgeAdamon/InstancedIndirect_And_JobSystem/tree/master/Assets/Scripts/Jobified)
